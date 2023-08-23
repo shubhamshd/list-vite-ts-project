@@ -19,6 +19,7 @@ export default class ListTemplate implements DomList {
   clear(): void {
     // const listItemElement = document.getElementById('listItems') as HTMLUListElement
     this.ul.innerHTML = ''
+    console.log('clearing ul before rendering')
   }
 
   render(fullList: FullList): void {
@@ -56,6 +57,8 @@ export default class ListTemplate implements DomList {
         fullList.removeItem(listItem.id)
         this.render(fullList)
       })
+
+      this.ul.append(li)
 
       ////////// another implementation which is not so optimised
       // const ulInnerHtml = `<li class="item">

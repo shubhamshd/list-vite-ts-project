@@ -28,16 +28,19 @@ export default class FullList implements List {
     const storedList = localStorage.getItem("myList")
 
     if(typeof storedList !== 'string') return
+    console.log('local storage does contain a itemlist')
     const parsedList: {_id: string, _item: string, _checked: boolean} [] = JSON.parse(storedList)
 
     parsedList.forEach(itemObj => {
       const newListItem: ListItem = new ListItem(itemObj._id, itemObj._item, itemObj._checked)
       FullList.instance.addItem(newListItem)
     })
+    console.log(FullList.instance.list)
   }
 
   save(): void {
     localStorage.setItem('myList', JSON.stringify(this._list))
+    console.log('item saved to local storage')
   }
 
   clearList(): void {
