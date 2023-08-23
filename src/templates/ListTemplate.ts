@@ -24,15 +24,15 @@ export default class ListTemplate implements DomList {
   render(fullList: FullList): void {
     this.clear()
 
-    let ulInnerHtml = ''
+    // let ulInnerHtml = ''
     fullList.list.forEach(listItem => {
-      ulInnerHtml += `<li class="item">
+      const ulInnerHtml = `<li class="item">
         <input type="checkbox" id=${listItem.id} tabIndex = 0 checked=${listItem.checked}>
         <label for=${listItem.id}>${listItem.item}</label>
         <button id="button-${listItem.id}" class="button">X</button>
       </li>`
 
-      this.ul.innerHTML = ulInnerHtml
+      this.ul.innerHTML += ulInnerHtml
 
       const inputElement = document.getElementById(listItem.id) as HTMLInputElement
       inputElement.addEventListener('change', () => {
@@ -46,9 +46,6 @@ export default class ListTemplate implements DomList {
         fullList.removeItem(listItem.id)
         this.render(fullList)
       })
-
     })
-    // const listItemElement = document.getElementById('listItems') as HTMLUListElement
-    this.ul.innerHTML = ulInnerHtml
   }
 }
